@@ -1,4 +1,4 @@
-import { Heart, Shield, Eye, BookOpen, Utensils, GraduationCap } from "lucide-react";
+import { Heart, Shield, Eye, BookOpen, Utensils, GraduationCap, BadgeCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
@@ -24,8 +24,27 @@ const Donate = () => {
         <div className="container-narrow text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-4">Make a Donation</h1>
           <p className="text-primary-foreground/70 max-w-2xl mx-auto text-lg">
-            Every contribution creates ripples of positive change in a child's life.
+            Every contribution creates ripples of positive change in a child's life. All donations are eligible for 80G tax benefits.
           </p>
+        </div>
+      </section>
+
+      {/* Trust Signals */}
+      <section className="bg-card border-b border-border py-6">
+        <div className="container-narrow">
+          <div className="flex flex-wrap justify-center gap-6">
+            {[
+              "Government Recognized",
+              "80G Tax Benefits",
+              "Established 1991",
+              "Reg. No. E-1442",
+            ].map((badge, i) => (
+              <div key={i} className="flex items-center gap-2">
+                <BadgeCheck className="w-4 h-4 text-primary" />
+                <span className="text-sm font-medium text-foreground">{badge}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -34,7 +53,7 @@ const Donate = () => {
         <div className="container-narrow text-center">
           <h2 className="text-3xl font-bold text-foreground mb-4">How Your Donation Helps</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
-            100% of your donation goes directly to the children. We maintain complete transparency with quarterly reports and audits available to all donors.
+            Your donations directly support orphaned and destitute children at ADHAR's shelter in Akurdi, Pune. We maintain complete transparency with quarterly reports and audits available to all donors.
           </p>
 
           {/* Transparency */}
@@ -42,12 +61,12 @@ const Donate = () => {
             <div className="bg-card rounded-xl p-8 shadow-sm border border-border text-center">
               <Shield className="w-10 h-10 text-primary mx-auto mb-4" />
               <h3 className="font-semibold text-foreground mb-2">100% Transparent</h3>
-              <p className="text-muted-foreground text-sm">Every rupee is accounted for with detailed reports.</p>
+              <p className="text-muted-foreground text-sm">Every rupee is accounted for with detailed reports. Registered under Charity Commissioner.</p>
             </div>
             <div className="bg-card rounded-xl p-8 shadow-sm border border-border text-center">
               <Eye className="w-10 h-10 text-primary mx-auto mb-4" />
-              <h3 className="font-semibold text-foreground mb-2">Audited Annually</h3>
-              <p className="text-muted-foreground text-sm">Independent audits ensure your trust is well placed.</p>
+              <h3 className="font-semibold text-foreground mb-2">80G Tax Benefits</h3>
+              <p className="text-muted-foreground text-sm">All donations are eligible for tax deduction under Section 80G of the Income Tax Act.</p>
             </div>
           </div>
         </div>
@@ -88,22 +107,25 @@ const Donate = () => {
         </div>
       </section>
 
-      {/* Bank Details */}
+      {/* Contact for Donations */}
       <section className="section-padding bg-background">
         <div className="container-narrow max-w-2xl">
-          <h2 className="text-3xl font-bold text-foreground text-center mb-8">Bank Transfer Details</h2>
+          <h2 className="text-3xl font-bold text-foreground text-center mb-8">Donate via Bank Transfer</h2>
           <div className="bg-card rounded-xl p-8 shadow-sm border border-border">
+            <p className="text-muted-foreground text-sm mb-6 text-center">
+              For bank transfer details or to discuss larger donations, please contact us directly:
+            </p>
             <div className="space-y-4 text-sm">
               {[
-                ["Account Name", "ADHAR Foundation"],
-                ["Bank", "State Bank of India"],
-                ["Account No.", "1234567890123456"],
-                ["IFSC Code", "SBIN0001234"],
-                ["Branch", "New Delhi Main Branch"],
+                ["Organization", "ADHAR Foundation"],
+                ["Registration", "Charity Commissioner Reg. No. E-1442"],
+                ["Tax Benefits", "80G Certified — Tax Deduction Available"],
+                ["Phone", "020-27656257"],
+                ["Address", "Madhav Smruti, Akurdi, Pune – 411044"],
               ].map(([label, value]) => (
                 <div key={label} className="flex justify-between py-2 border-b border-border last:border-0">
                   <span className="text-muted-foreground">{label}</span>
-                  <span className="font-medium text-foreground">{value}</span>
+                  <span className="font-medium text-foreground text-right">{value}</span>
                 </div>
               ))}
             </div>
