@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Heart, Users, GraduationCap, IndianRupee, ArrowRight, Star, Quote } from "lucide-react";
+import { Heart, Users, GraduationCap, ShieldCheck, ArrowRight, Star, Quote, BadgeCheck, Clock, IndianRupee } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-children.jpg";
 
@@ -10,10 +10,17 @@ const stats = [
   { icon: IndianRupee, label: "Donations Raised", value: "₹5Cr+" },
 ];
 
+const trustBadges = [
+  { icon: ShieldCheck, label: "Government Recognized" },
+  { icon: BadgeCheck, label: "80G Tax Benefits" },
+  { icon: Clock, label: "Established in 1991" },
+  { icon: Star, label: "Over 30 Years of Service" },
+];
+
 const programs = [
-  { title: "Child Education", desc: "Quality education for every child regardless of their background." },
-  { title: "Food & Nutrition", desc: "Ensuring no child goes to bed hungry with nutritious meals." },
-  { title: "Healthcare", desc: "Regular health checkups and medical care for all children." },
+  { title: "Child Education", desc: "Quality schooling, tuition support, and learning resources for children of all ages." },
+  { title: "Food & Nutrition", desc: "Three nutritious meals a day to ensure children get balanced diets for their growth." },
+  { title: "Healthcare", desc: "Regular health checkups, vaccinations, and medical support for every child in our care." },
 ];
 
 const testimonials = [
@@ -28,20 +35,20 @@ const Index = () => {
       {/* Hero */}
       <section className="relative min-h-[85vh] flex items-center">
         <div className="absolute inset-0">
-          <img src={heroImage} alt="Happy children at ADHAR" className="w-full h-full object-cover" />
+          <img src={heroImage} alt="Happy children at ADHAR, Pune" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/40" />
         </div>
         <div className="relative container-narrow px-4 py-20">
           <div className="max-w-2xl">
             <span className="inline-block bg-secondary/20 text-secondary border border-secondary/30 rounded-full px-4 py-1.5 text-sm font-medium mb-6 animate-fade-in-up">
-              Empowering Lives Since 2010
+              Empowering Lives Since 1991
             </span>
             <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground leading-tight mb-6 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-              Giving every child a chance at a{" "}
-              <span className="text-secondary">brighter future.</span>
+              30+ Years of Changing Lives.{" "}
+              <span className="text-secondary">Be the reason a child smiles today.</span>
             </h1>
             <p className="text-lg text-primary-foreground/80 mb-8 max-w-lg animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-              ADHAR is committed to providing shelter, education, and love to orphaned children across India.
+              ADHAR is a Government-recognized trust providing shelter, education, and love to orphaned and destitute children in Pune since 1991.
             </p>
             <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
               <Link to="/donate">
@@ -50,12 +57,31 @@ const Index = () => {
                   Donate Now
                 </Button>
               </Link>
+              <Link to="/contact">
+                <Button size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-semibold text-base px-8">
+                  Visit Us
+                </Button>
+              </Link>
               <Link to="/volunteer">
                 <Button size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-semibold text-base px-8">
-                  Become a Volunteer
+                  Volunteer
                 </Button>
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Badges */}
+      <section className="bg-card border-b border-border py-6">
+        <div className="container-narrow">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {trustBadges.map((badge, i) => (
+              <div key={i} className="flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-primary/5">
+                <badge.icon className="w-5 h-5 text-primary shrink-0" />
+                <span className="text-sm font-medium text-foreground">{badge.label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -64,8 +90,11 @@ const Index = () => {
       <section className="section-padding bg-background">
         <div className="container-narrow text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Who We Are</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto mb-4 leading-relaxed">
+            ADHAR is a public charitable trust founded on 28th March 1991, recognized by the Government of Maharashtra for the welfare of orphaned and destitute children and women. Registered with the Charity Commissioner (Reg. No. E-1442) and under Section 80G for tax-exempt donations.
+          </p>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-            ADHAR Foundation is a non-profit organization dedicated to transforming the lives of orphaned and underprivileged children. We believe every child deserves love, care, and the opportunity to dream.
+            Located in Akurdi, Pune, ADHAR has been providing shelter, care, protection, and opportunities for vulnerable children and women for over three decades.
           </p>
           <Link to="/about">
             <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
@@ -98,7 +127,7 @@ const Index = () => {
         <div className="container-narrow">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Programs</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">We run multiple initiatives to ensure holistic development of every child in our care.</p>
+            <p className="text-muted-foreground max-w-xl mx-auto">Comprehensive programs designed for the holistic development of every child in our care.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {programs.map((prog, i) => (
@@ -128,7 +157,7 @@ const Index = () => {
             Your small help can change a life.
           </h2>
           <p className="text-secondary-foreground/80 max-w-xl mx-auto mb-8">
-            Every donation, no matter how small, brings hope and a smile to a child's face.
+            Every donation, no matter how small, brings hope and a smile to a child's face. All donations are eligible for 80G tax benefits.
           </p>
           <Link to="/donate">
             <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-base px-10">

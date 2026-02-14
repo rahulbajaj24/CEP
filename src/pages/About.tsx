@@ -1,17 +1,16 @@
 import { Heart, Target, Eye, Shield, Users, Lightbulb } from "lucide-react";
 
 const values = [
-  { icon: Heart, title: "Compassion", desc: "We lead with empathy and care for every child." },
-  { icon: Shield, title: "Integrity", desc: "Transparency and honesty in everything we do." },
-  { icon: Users, title: "Community", desc: "Building strong bonds between children and society." },
-  { icon: Lightbulb, title: "Innovation", desc: "Finding new ways to create lasting impact." },
+  { icon: Heart, title: "Compassion", desc: "We lead with empathy and care for every child and woman in our shelter." },
+  { icon: Shield, title: "Integrity", desc: "Transparency and honesty in everything we do — every rupee accounted for." },
+  { icon: Users, title: "Community", desc: "Building strong bonds between children and the society around them." },
+  { icon: Lightbulb, title: "Empowerment", desc: "Equipping children with skills and confidence to become self-reliant." },
 ];
 
 const team = [
-  { name: "Dr. Meera Gupta", role: "Founder & Director", bio: "20+ years in child welfare and social work." },
-  { name: "Arjun Patel", role: "Program Manager", bio: "Specialist in education and community development." },
-  { name: "Sanya Reddy", role: "Operations Head", bio: "Expert in NGO operations and fundraising." },
-  { name: "Vikram Singh", role: "Volunteer Coordinator", bio: "Passionate about connecting people with purpose." },
+  { name: "Vaidya Parshuram Y. Khadilwale", role: "Founder", bio: "Inspired by witnessing an abandoned newborn, he dedicated his life to orphaned children." },
+  { name: "Shri Krishnakrishna Damle", role: "Co-Founder & Trustee", bio: "Donated land in Akurdi, Pune, to establish the ADHAR shelter." },
+  { name: "Shri Vasant Bhave", role: "Co-Founder & Trustee", bio: "Co-donated the land and supported the foundation of ADHAR." },
 ];
 
 const About = () => {
@@ -22,7 +21,7 @@ const About = () => {
         <div className="container-narrow text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-4">About ADHAR</h1>
           <p className="text-primary-foreground/70 max-w-2xl mx-auto text-lg">
-            Our journey of compassion, dedication, and transforming lives.
+            Over 30 years of compassion, dedication, and transforming lives in Pune.
           </p>
         </div>
       </section>
@@ -33,10 +32,13 @@ const About = () => {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-foreground mb-6">Our Story</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Founded in 2010, ADHAR began as a small shelter for 15 orphaned children in New Delhi. What started as one person's dream to make a difference has grown into a nationwide movement touching thousands of lives.
+              ADHAR was founded on <strong className="text-foreground">28th March 1991</strong> as a public charitable trust. The inspiration came when <strong className="text-foreground">Vaidya Parshuram Yashwant Vaidya Khadilwale</strong> witnessed an abandoned newborn in a Mumbai slum and resolved to dedicate his life to helping orphaned and destitute children.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              With the support of his friends <strong className="text-foreground">Shri Krishnakrishna Damle</strong> and <strong className="text-foreground">Shri Vasant Bhave</strong>, who donated two plots of land in Akurdi, Pune, the foundation of ADHAR was established.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Today, ADHAR supports over 2,500 children across multiple centers, providing education, healthcare, nutrition, and most importantly — a loving home. Our commitment remains unchanged: every child deserves a chance.
+              Since then, the organization has worked toward providing shelter, care, protection, and opportunities for vulnerable children and women. Recognized by the Government of Maharashtra and registered with the Charity Commissioner (Reg. No. E-1442), ADHAR continues to serve with unwavering commitment.
             </p>
           </div>
         </div>
@@ -51,7 +53,7 @@ const About = () => {
             </div>
             <h3 className="text-2xl font-bold text-foreground mb-4">Our Mission</h3>
             <p className="text-muted-foreground leading-relaxed">
-              To provide a safe, nurturing environment for orphaned and underprivileged children, empowering them through education, healthcare, and life skills to become confident, self-reliant individuals.
+              To provide a safe home, quality care, and a brighter future for orphaned and destitute children while empowering them to become confident, independent members of society.
             </p>
           </div>
           <div className="bg-card rounded-xl p-10 shadow-sm border border-border">
@@ -60,7 +62,7 @@ const About = () => {
             </div>
             <h3 className="text-2xl font-bold text-foreground mb-4">Our Vision</h3>
             <p className="text-muted-foreground leading-relaxed">
-              A world where every child, regardless of their circumstances, has equal access to love, education, and the opportunity to build a bright future for themselves and their community.
+              A world where every child is protected, educated, and given equal opportunity to thrive — regardless of their circumstances.
             </p>
           </div>
         </div>
@@ -84,11 +86,38 @@ const About = () => {
         </div>
       </section>
 
-      {/* Team */}
+      {/* Registration Info */}
       <section className="section-padding bg-muted">
+        <div className="container-narrow max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold text-foreground text-center mb-8">Registration & Recognition</h2>
+          <div className="bg-card rounded-xl p-8 shadow-sm border border-border">
+            <ul className="space-y-4 text-muted-foreground">
+              <li className="flex gap-3 items-start">
+                <Shield className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                <span>Recognized by the <strong className="text-foreground">Government of Maharashtra</strong> for orphaned and destitute children and women.</span>
+              </li>
+              <li className="flex gap-3 items-start">
+                <Shield className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                <span>Registered with the <strong className="text-foreground">Charity Commissioner</strong> (Reg. No. E-1442).</span>
+              </li>
+              <li className="flex gap-3 items-start">
+                <Shield className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                <span>Under the <strong className="text-foreground">Commissionerate of Women and Child Development</strong>, Pune.</span>
+              </li>
+              <li className="flex gap-3 items-start">
+                <Shield className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                <span>Registered under <strong className="text-foreground">Section 80G</strong> for tax-exempt donations.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Team */}
+      <section className="section-padding bg-background">
         <div className="container-narrow">
-          <h2 className="text-3xl font-bold text-foreground text-center mb-12">Meet Our Team</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <h2 className="text-3xl font-bold text-foreground text-center mb-12">Our Founders</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {team.map((member, i) => (
               <div key={i} className="bg-card rounded-xl p-6 shadow-sm border border-border text-center hover-lift">
                 <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">

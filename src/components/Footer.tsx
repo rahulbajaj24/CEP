@@ -17,7 +17,7 @@ const Footer = () => {
               <span className="text-xl font-bold">ADHAR</span>
             </div>
             <p className="text-primary-foreground/70 text-sm leading-relaxed">
-              Giving every child a chance at a brighter future. Together, we can make a difference.
+              A public charitable trust since 1991. Recognized by the Government of Maharashtra for orphaned and destitute children and women.
             </p>
           </div>
 
@@ -42,10 +42,12 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Contact</h4>
             <ul className="space-y-2 text-sm text-primary-foreground/70">
-              <li>123 Hope Street, New Delhi</li>
-              <li>India - 110001</li>
-              <li>contact@adhar-ngo.org</li>
-              <li>+91 98765 43210</li>
+              <li>"Madhav Smruti"</li>
+              <li>Plot No. 48 & 49, Sector 27,</li>
+              <li>Janata Vasahat, Pradhikaran,</li>
+              <li>Near Akurdi Railway Station,</li>
+              <li>Pune – 411044</li>
+              <li className="pt-2">020-27656257</li>
             </ul>
             <div className="flex gap-3 mt-4">
               {[Facebook, Twitter, Instagram, Youtube].map((Icon, i) => (
@@ -76,11 +78,14 @@ const Footer = () => {
                 <Mail className="w-4 h-4" />
               </Button>
             </div>
+            <p className="text-xs text-primary-foreground/50 mt-3">
+              Reg. No. E-1442 | 80G Certified
+            </p>
           </div>
         </div>
 
         <div className="border-t border-primary-foreground/10 mt-12 pt-6 text-center text-sm text-primary-foreground/50">
-          © {new Date().getFullYear()} ADHAR Foundation. All rights reserved.
+          © {new Date().getFullYear()} ADHAR Foundation. All rights reserved. | Charity Commissioner Reg. No. E-1442
         </div>
       </div>
     </footer>
