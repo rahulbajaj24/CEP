@@ -6,6 +6,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Index from "./pages/Index";
+import About from "./pages/About";
+import Programs from "./pages/Programs";
+import Volunteer from "./pages/Volunteer";
+import Donate from "./pages/Donate";
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -37,9 +42,14 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Layout> {/* This puts the Navbar and Footer back on EVERY page */}
+          <Layout>
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/programs" element={<Programs />} />
+              <Route path="/volunteer" element={<Volunteer />} />
+              <Route path="/donate" element={<Donate />} />
+              <Route path="/contact" element={<Contact />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Layout>
