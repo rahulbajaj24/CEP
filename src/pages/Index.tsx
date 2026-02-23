@@ -36,35 +36,46 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* --- HERO SECTION --- */}
-      <section className="relative w-full h-screen flex items-center overflow-hidden">
-  <img 
-    src="/hero-bg.png" 
-    alt="ADHAR Community" 
-    className="absolute inset-0 w-full h-full object-contain md:object-cover z-0" 
-  />
-  <div className="absolute inset-0 bg-gradient-to-r from-slate-900/60 via-slate-900/20 to-transparent z-10" />
+      <section className="relative w-full h-screen flex items-center overflow-hidden bg-slate-900">
+  {/* The Image with Slow Zoom */}
+  <div className="absolute inset-0 z-0">
+    <img 
+      src="/hero-bg.png" 
+      alt="ADHAR Community" 
+      className="w-full h-full object-contain md:object-cover animate-slow-zoom" 
+    />
+    {/* A more professional gradient: Darker on the left for text, clear on the right */}
+    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+  </div>
 
-  <div className="relative z-20 w-full px-6 md:px-12 lg:px-24">
-    <div className="max-w-3xl">
-      <span className="inline-block bg-secondary text-white rounded-full px-4 py-1.5 text-sm font-bold mb-6">
+  <div className="relative z-10 w-full px-6 md:px-12 lg:px-24">
+    <div className="max-w-3xl glass-card p-8 md:p-12 rounded-3xl">
+      <span className="inline-flex items-center gap-2 bg-secondary text-white rounded-full px-4 py-1.5 text-sm font-bold mb-6">
+        <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+        </span>
         Empowering Lives Since 1991
       </span>
-      <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 drop-shadow-lg">
-        30+ Years of Changing Lives. <br />
-        <span className="text-secondary">Be the reason a child smiles today.</span>
+      
+      <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-6 drop-shadow-2xl">
+        30+ Years of <br />
+        <span className="text-secondary">Changing Lives.</span>
       </h1>
-      <p className="text-lg md:text-xl text-white/90 mb-8 max-w-xl drop-shadow-sm">
-        ADHAR is a Government-recognized trust providing shelter, education, and love to orphaned and destitute children in Nigdi, Pune.
+      
+      <p className="text-lg md:text-xl text-white/90 mb-10 max-w-xl leading-relaxed">
+        ADHAR is a Government-recognized trust providing shelter, education, and love to orphaned and destitute children in <span className="font-bold text-white">Nigdi, Pune.</span>
       </p>
-      <div className="flex flex-wrap gap-4">
+      
+      <div className="flex flex-wrap gap-5">
         <Link to="/donate">
-          <Button size="lg" className="bg-secondary text-white hover:bg-orange-600 font-bold px-8 rounded-full shadow-lg">
-            <Heart className="w-5 h-5 mr-2" />
+          <Button size="lg" className="bg-secondary text-white hover:bg-orange-600 font-bold px-10 h-14 rounded-full shadow-[0_10px_20px_rgba(249,115,22,0.3)] transition-all hover:-translate-y-1">
+            <Heart className="w-5 h-5 mr-2 fill-white" />
             Donate Now
           </Button>
         </Link>
         <Link to="/volunteer">
-          <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm text-white border-2 border-white hover:bg-white hover:text-slate-900 font-bold px-8 rounded-full">
+          <Button size="lg" variant="outline" className="bg-white/10 text-white border-white/40 hover:bg-white hover:text-slate-900 font-bold px-10 h-14 rounded-full backdrop-blur-md transition-all">
             Volunteer
           </Button>
         </Link>
@@ -72,7 +83,6 @@ const Index = () => {
     </div>
   </div>
 </section>
-
       {/* Trust Badges */}
       <section className="w-full bg-card border-b border-border py-6 px-4">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
