@@ -25,26 +25,37 @@ const App = () => {
 
   if (loading) {
     return (
-      <div className="fixed inset-0 flex flex-col items-center justify-center z-[9999] animate-bg-pulse">
-        <div className="relative">
-          {/* Subtle glow behind the logo */}
-          <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full animate-pulse" />
-          
-          <img 
-            src="/adhar-brand-icon.jpeg" 
-            alt="ADHAR Logo" 
-            className="w-32 h-32 relative z-10 animate-reveal shadow-2xl rounded-2xl" 
-          />
+      <div className="fixed inset-0 bg-slate-50 flex flex-col items-center justify-center z-[9999]">
+        <div className="w-48 h-48 flex items-center justify-center relative">
+          {/* Animated SVG Symbolizing Care/Home */}
+          <svg 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="1" 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            className="w-32 h-32 text-secondary animate-draw"
+          >
+            {/* A simple, elegant house with a heart inside */}
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <path d="M9 22V12h6v10" />
+            <path 
+              className="animate-beat text-red-400 fill-red-400" 
+              d="M12 18.5s-4.5-2.5-4.5-5.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1 5 0c0 3-4.5 5.5-4.5 5.5z" 
+            />
+          </svg>
         </div>
         
-        <h1 className="mt-8 text-3xl font-bold tracking-widest text-primary animate-pulse">
-          ADHAR
-        </h1>
-        <div className="mt-2 h-1 w-12 bg-secondary rounded-full animate-bounce" />
-        
-        <p className="mt-4 text-slate-400 text-sm font-light tracking-[0.2em] uppercase">
-          Khamgaon Community Project
-        </p>
+        <div className="text-center space-y-2">
+          <h2 className="text-2xl font-light tracking-[0.3em] text-slate-800 uppercase animate-fade-in">
+            ADHAR
+          </h2>
+          <div className="h-[1px] w-24 bg-gradient-to-r from-transparent via-secondary to-transparent mx-auto" />
+          <p className="text-xs text-slate-400 tracking-[0.4em] uppercase">
+            Providing a Foundation for Life
+          </p>
+        </div>
       </div>
     );
   }

@@ -148,3 +148,24 @@
 .animate-bg-pulse {
   animation: background-glow 2s infinite ease-in-out;
 }
+
+@keyframes draw-path {
+  0% { stroke-dashoffset: 1000; opacity: 0; }
+  50% { opacity: 1; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes heart-beat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.animate-draw {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw-path 3s ease-in-out forwards;
+}
+
+.animate-beat {
+  animation: heart-beat 1.5s infinite ease-in-out;
+}
