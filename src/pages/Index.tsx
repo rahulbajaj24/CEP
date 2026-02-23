@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Heart, Users, GraduationCap, ShieldCheck, ArrowRight, Star, Quote, BadgeCheck, Clock, IndianRupee } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-children.jpg";
 
 const stats = [
   { icon: Heart, label: "Children Supported", value: "2,500+" },
@@ -35,7 +34,7 @@ const Index = () => {
       {/* Hero */}
       <section className="relative min-h-[85vh] flex items-center">
         <div className="absolute inset-0">
-          <img src={heroImage} alt="Happy children at ADHAR, Pune" className="w-full h-full object-cover" />
+          <img src="/hero-bg.jpg" alt="ADHAR Community" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/40" />
         </div>
         <div className="relative container-narrow px-4 py-20">
