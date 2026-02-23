@@ -23,29 +23,45 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  if (loading) {
-  return (
-    <div className="fixed inset-0 bg-slate-50 flex flex-col items-center justify-center z-[9999]">
-      <div className="w-48 h-48 flex items-center justify-center relative">
-        <svg 
-          viewBox="0 0 24 24" 
-          fill="none" 
-          stroke="currentColor" 
-          strokeWidth="1" 
-          className="w-32 h-32 text-secondary animate-draw"
-        >
-          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-          <path d="M9 22V12h6v10" />
-          <path 
-            className="animate-beat text-red-400 fill-red-400" 
-            d="M12 18.5s-4.5-2.5-4.5-5.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1 5 0c0 3-4.5 5.5-4.5 5.5z" 
-          />
-        </svg>
+ if (loading) {
+    return (
+      <div className="fixed inset-0 bg-slate-50 flex flex-col items-center justify-center z-[9999]">
+        <div className="flex flex-col items-center">
+          {/* Animated SVG Icon */}
+          <div className="w-32 h-32 mb-8">
+            <svg 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="1" 
+              className="w-full h-full text-secondary animate-draw"
+            >
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <path d="M9 22V12h6v10" />
+              <path 
+                className="animate-beat text-red-400 fill-red-400" 
+                d="M12 18.5s-4.5-2.5-4.5-5.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1 5 0c0 3-4.5 5.5-4.5 5.5z" 
+              />
+            </svg>
+          </div>
+
+          {/* New Text Content */}
+          <div className="text-center opacity-0 animate-fade-slide" style={{ animationDelay: '0.5s' }}>
+            <h1 className="text-3xl font-bold tracking-[0.4em] text-slate-800 uppercase">
+              ADHAR
+            </h1>
+            <div className="h-1 w-12 bg-secondary mx-auto mt-2 rounded-full" />
+            <p className="mt-4 text-slate-500 font-medium tracking-wide">
+              Nigdi, Pune
+            </p>
+            <p className="mt-1 text-xs text-slate-400 uppercase tracking-[0.2em]">
+              Since 1991
+            </p>
+          </div>
+        </div>
       </div>
-      <h2 className="mt-8 text-2xl font-light tracking-[0.3em] text-slate-800 uppercase">ADHAR</h2>
-    </div>
-  );
-}
+    );
+  }
 
   return (
     <QueryClientProvider client={queryClient}>
