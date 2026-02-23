@@ -25,13 +25,26 @@ const App = () => {
 
   if (loading) {
     return (
-      <div className="fixed inset-0 bg-white flex flex-col items-center justify-center z-[9999]">
-        <img 
-          src="/adhar-brand-icon.jpeg" 
-          alt="ADHAR Logo" 
-          className="w-32 h-32 animate-splash" 
-        />
-        <p className="mt-4 text-slate-500 font-medium animate-pulse">Loading ADHAR...</p>
+      <div className="fixed inset-0 flex flex-col items-center justify-center z-[9999] animate-bg-pulse">
+        <div className="relative">
+          {/* Subtle glow behind the logo */}
+          <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full animate-pulse" />
+          
+          <img 
+            src="/adhar-brand-icon.jpeg" 
+            alt="ADHAR Logo" 
+            className="w-32 h-32 relative z-10 animate-reveal shadow-2xl rounded-2xl" 
+          />
+        </div>
+        
+        <h1 className="mt-8 text-3xl font-bold tracking-widest text-primary animate-pulse">
+          ADHAR
+        </h1>
+        <div className="mt-2 h-1 w-12 bg-secondary rounded-full animate-bounce" />
+        
+        <p className="mt-4 text-slate-400 text-sm font-light tracking-[0.2em] uppercase">
+          Khamgaon Community Project
+        </p>
       </div>
     );
   }
