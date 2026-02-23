@@ -57,14 +57,22 @@ const Index = () => {
       </p>
       <div className="flex gap-4">
         <Link to="/donate">
-          <Button size="lg" className="bg-secondary hover:bg-orange-600 px-8 rounded-full font-bold">
-            Donate Now
-          </Button>
-        </Link>
-        <Link to="/volunteer">
-          <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-black px-8 rounded-full font-bold">
-            Volunteer
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 mt-8">
+  <Link to="/donate">
+    {/* Solid Orange Button */}
+    <Button size="lg" className="bg-secondary text-white hover:bg-orange-600 px-10 rounded-full font-bold shadow-lg h-14">
+      <Heart className="w-5 h-5 mr-2" />
+      Donate Now
+    </Button>
+  </Link>
+  
+  <Link to="/volunteer">
+    {/* Solid Dark Button - much better than white outline */}
+    <Button size="lg" className="bg-slate-900 text-white hover:bg-slate-800 px-10 rounded-full font-bold shadow-lg h-14">
+      Volunteer
+    </Button>
+  </Link>
+</div>
         </Link>
       </div>
     </div>
