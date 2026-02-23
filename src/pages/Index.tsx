@@ -34,7 +34,11 @@ const Index = () => {
       {/* Hero */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative min-h-[85vh] flex items-center">
         <div className="absolute inset-0">
-          <img src="/hero-bg.png" alt="ADHAR Community" className="w-full h-full object-cover" />
+         <img 
+          src="/hero-bg.png" 
+          alt="ADHAR Community" 
+          className="absolute inset-0 w-full h-full object-cover object-center z-0" 
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/40" />
         </div>
         <div className="relative bg-cover bg-center bg-no-repeat container-narrow px-4 py-20">
