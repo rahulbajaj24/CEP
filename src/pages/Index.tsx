@@ -37,7 +37,7 @@ const Index = () => {
           <img src="/hero-bg.png" alt="ADHAR Community" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/40" />
         </div>
-        <div className="relative container-narrow px-4 py-20">
+        <div className="relative bg-cover bg-center bg-no-repeat container-narrow px-4 py-20">
           <div className="max-w-2xl">
             <span className="inline-block bg-secondary/20 text-secondary border border-secondary/30 rounded-full px-4 py-1.5 text-sm font-medium mb-6 animate-fade-in-up">
               Empowering Lives Since 1991
