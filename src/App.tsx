@@ -25,9 +25,13 @@ const App = () => {
 
   if (loading) {
     return (
-      <div className="fixed inset-0 bg-slate-50 flex flex-col items-center justify-center z-[9999]">
-        <div className="w-48 h-48 flex items-center justify-center relative">
-          {/* Animated SVG Symbolizing Care/Home */}
+      <div className="fixed inset-0 bg-slate-50 flex flex-col items-center justify-center z-[9999] p-4">
+        {/* Container that scales with screen size */}
+        <div className="w-[40vw] h-[40vw] max-w-[250px] max-h-[250px] min-w-[150px] min-h-[150px] flex items-center justify-center relative">
+          
+          {/* Background Glow that scales */}
+          <div className="absolute inset-0 bg-secondary/5 blur-[60px] rounded-full animate-pulse" />
+          
           <svg 
             viewBox="0 0 24 24" 
             fill="none" 
@@ -35,9 +39,8 @@ const App = () => {
             strokeWidth="1" 
             strokeLinecap="round" 
             strokeLinejoin="round" 
-            className="w-32 h-32 text-secondary animate-draw"
+            className="w-full h-full text-secondary animate-draw relative z-10"
           >
-            {/* A simple, elegant house with a heart inside */}
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
             <path d="M9 22V12h6v10" />
             <path 
@@ -47,12 +50,15 @@ const App = () => {
           </svg>
         </div>
         
-        <div className="text-center space-y-2">
-          <h2 className="text-2xl font-light tracking-[0.3em] text-slate-800 uppercase animate-fade-in">
+        {/* Text that adapts to screen width */}
+        <div className="text-center space-y-4 mt-8 w-full max-w-md">
+          <h2 className="text-[8vw] md:text-4xl font-light tracking-[0.3em] text-slate-800 uppercase animate-fade-in">
             ADHAR
           </h2>
-          <div className="h-[1px] w-24 bg-gradient-to-r from-transparent via-secondary to-transparent mx-auto" />
-          <p className="text-xs text-slate-400 tracking-[0.4em] uppercase">
+          
+          <div className="h-[1px] w-1/3 bg-gradient-to-r from-transparent via-secondary to-transparent mx-auto" />
+          
+          <p className="text-[3vw] md:text-sm text-slate-400 tracking-[0.3em] uppercase px-4 leading-relaxed">
             Providing a Foundation for Life
           </p>
         </div>
