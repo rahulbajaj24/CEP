@@ -23,39 +23,42 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
- if (loading) {
+ const quotes = [
+    "Empowering Lives, Building Futures.",
+    "Small Acts, Big Impact.",
+    "Every Child Deserves a Home.",
+    "Nurturing Hope Since 1991.",
+    "Spreading Smiles in Nigdi, Pune.",
+    "Education is the Foundation of Life."
+  ];
+
+  // Pick a random quote only once per refresh
+  const randomQuote = React.useMemo(() => quotes[Math.floor(Math.random() * quotes.length)], []);
+
+  if (loading) {
     return (
       <div className="fixed inset-0 bg-slate-50 flex flex-col items-center justify-center z-[9999]">
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center max-w-xs text-center">
           {/* Animated SVG Icon */}
-          <div className="w-32 h-32 mb-8">
-            <svg 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="1" 
-              className="w-full h-full text-secondary animate-draw"
-            >
+          <div className="w-24 h-24 mb-6">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="w-full h-full text-secondary animate-draw">
               <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
               <path d="M9 22V12h6v10" />
-              <path 
-                className="animate-beat text-red-400 fill-red-400" 
-                d="M12 18.5s-4.5-2.5-4.5-5.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1 5 0c0 3-4.5 5.5-4.5 5.5z" 
-              />
+              <path className="animate-beat text-red-400 fill-red-400" d="M12 18.5s-4.5-2.5-4.5-5.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1 5 0c0 3-4.5 5.5-4.5 5.5z" />
             </svg>
           </div>
 
-          {/* New Text Content */}
-          <div className="text-center opacity-0 animate-fade-slide" style={{ animationDelay: '0.5s' }}>
-            <h1 className="text-3xl font-bold tracking-[0.4em] text-slate-800 uppercase">
-              ADHAR
-            </h1>
-            <div className="h-1 w-12 bg-secondary mx-auto mt-2 rounded-full" />
-            <p className="mt-4 text-slate-500 font-medium tracking-wide">
-              Nigdi, Pune
-            </p>
-            <p className="mt-1 text-xs text-slate-400 uppercase tracking-[0.2em]">
-              Since 1991
+          {/* Branding */}
+          <div className="opacity-0 animate-fade-slide" style={{ animationDelay: '0.4s' }}>
+            <h1 className="text-3xl font-bold tracking-[0.3em] text-slate-800 uppercase">ADHAR</h1>
+            <p className="text-xs text-slate-400 font-medium tracking-[0.2em] mt-1 mb-4">NIGDI, PUNE • SINCE 1991</p>
+            <div className="h-[2px] w-8 bg-secondary mx-auto mb-6 rounded-full" />
+          </div>
+
+          {/* Dynamic Quote */}
+          <div className="opacity-0 animate-fade-slide px-4" style={{ animationDelay: '0.8s' }}>
+            <p className="text-sm italic font-serif text-slate-500 leading-relaxed tracking-wide">
+              "{randomQuote}"
             </p>
           </div>
         </div>
