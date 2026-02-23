@@ -169,3 +169,13 @@
 .animate-beat {
   animation: heart-beat 1.5s infinite ease-in-out;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevents images from breaking the layout on small phones */
+img {
+  max-width: 100%;
+  height: auto;
+}

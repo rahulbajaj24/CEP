@@ -32,7 +32,7 @@ const Index = () => {
   return (
     <div>
       {/* Hero */}
-      <section className="relative min-h-[85vh] flex items-center">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative min-h-[85vh] flex items-center">
         <div className="absolute inset-0">
           <img src="/hero-bg.png" alt="ADHAR Community" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/40" />
@@ -42,7 +42,7 @@ const Index = () => {
             <span className="inline-block bg-secondary/20 text-secondary border border-secondary/30 rounded-full px-4 py-1.5 text-sm font-medium mb-6 animate-fade-in-up">
               Empowering Lives Since 1991
             </span>
-            <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground leading-tight mb-6 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+            <h1 className="text-4xl md:text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground leading-tight mb-6 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
               30+ Years of Changing Lives.{" "}
               <span className="text-secondary">Be the reason a child smiles today.</span>
             </h1>
@@ -72,7 +72,7 @@ const Index = () => {
       </section>
 
       {/* Trust Badges */}
-      <section className="bg-card border-b border-border py-6">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-card border-b border-border py-6">
         <div className="container-narrow">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {trustBadges.map((badge, i) => (
@@ -86,7 +86,7 @@ const Index = () => {
       </section>
 
       {/* About Preview */}
-      <section className="section-padding bg-background">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 section-padding bg-background">
         <div className="container-narrow text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Who We Are</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-4 leading-relaxed">
@@ -104,7 +104,7 @@ const Index = () => {
       </section>
 
       {/* Stats */}
-      <section className="section-padding bg-primary">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 section-padding bg-primary">
         <div className="container-narrow">
           <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground text-center mb-12">Our Impact</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -122,7 +122,7 @@ const Index = () => {
       </section>
 
       {/* Programs Preview */}
-      <section className="section-padding bg-background">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 section-padding bg-background">
         <div className="container-narrow">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Programs</h2>
@@ -150,7 +150,7 @@ const Index = () => {
       </section>
 
       {/* CTA Banner */}
-      <section className="section-padding bg-secondary">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 section-padding bg-secondary">
         <div className="container-narrow text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-secondary-foreground mb-4">
             Your small help can change a life.
@@ -167,7 +167,7 @@ const Index = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="section-padding bg-muted">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 section-padding bg-muted">
         <div className="container-narrow">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-12">What People Say</h2>
           <div className="grid md:grid-cols-3 gap-6">
