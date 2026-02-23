@@ -60,17 +60,29 @@ const Index = () => {
           <div className="flex flex-col sm:flex-row gap-4 mt-8">
   <Link to="/donate">
     {/* Solid Orange Button */}
-    <Button size="lg" className="bg-secondary text-white hover:bg-orange-600 px-10 rounded-full font-bold shadow-lg h-14">
-      <Heart className="w-5 h-5 mr-2" />
+    <div className="flex flex-wrap gap-4 mt-8 justify-center md:justify-start">
+  {/* Donate Now Button */}
+  <Link to="/donate">
+    <Button size="lg" className="bg-secondary text-white hover:bg-orange-600 px-8 rounded-full font-bold shadow-lg h-12 transition-all hover:scale-105">
+      <Heart className="w-4 h-4 mr-2 fill-white" />
       Donate Now
     </Button>
   </Link>
-  
+
+  {/* Volunteer Button */}
   <Link to="/volunteer">
-    {/* Solid Dark Button - much better than white outline */}
-    <Button size="lg" className="bg-slate-900 text-white hover:bg-slate-800 px-10 rounded-full font-bold shadow-lg h-14">
+    <Button size="lg" className="bg-secondary text-white hover:bg-orange-600 px-8 rounded-full font-bold shadow-lg h-12 transition-all hover:scale-105">
       Volunteer
     </Button>
+  </Link>
+
+  {/* Visit Us Button */}
+  <Link to="/contact">
+    <Button size="lg" className="bg-secondary text-white hover:bg-orange-600 px-8 rounded-full font-bold shadow-lg h-12 transition-all hover:scale-105">
+      Visit Us
+    </Button>
+  </Link>
+</div>
   </Link>
 </div>
         </Link>
