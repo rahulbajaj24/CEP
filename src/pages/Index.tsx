@@ -32,7 +32,7 @@ const Index = () => {
   return (
     <div>
       {}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative min-h-[85vh] flex items-center">
+      <section className=" px-4 sm:px-6 lg:px-8 relative min-h-[85vh] flex items-center">
         <div className="absolute inset-0">
          <div className="relative w-full h-[50vh] md:h-screen overflow-hidden bg-white">
   <img 
@@ -79,7 +79,7 @@ const Index = () => {
       </section>
 
       {/* Trust Badges */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-card border-b border-border py-6">
+      <section className=" px-4 sm:px-6 lg:px-8 bg-card border-b border-border py-6">
         <div className="container-narrow">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {trustBadges.map((badge, i) => (
@@ -93,7 +93,7 @@ const Index = () => {
       </section>
 
       {/* About Preview */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 section-padding bg-background">
+      <section className=" px-4 sm:px-6 lg:px-8 section-padding bg-background">
         <div className="container-narrow text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Who We Are</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-4 leading-relaxed">
@@ -111,7 +111,7 @@ const Index = () => {
       </section>
 
       {/* Stats */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 section-padding bg-primary">
+      <section className=" px-4 sm:px-6 lg:px-8 section-padding bg-primary">
         <div className="container-narrow">
           <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground text-center mb-12">Our Impact</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -129,7 +129,7 @@ const Index = () => {
       </section>
 
       {}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 section-padding bg-background">
+      <section className=" px-4 sm:px-6 lg:px-8 section-padding bg-background">
         <div className="container-narrow">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Programs</h2>
@@ -157,7 +157,7 @@ const Index = () => {
       </section>
 
       {/* CTA Banner */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 section-padding bg-secondary">
+      <section className=" px-4 sm:px-6 lg:px-8 section-padding bg-secondary">
         <div className="container-narrow text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-secondary-foreground mb-4">
             Your small help can change a life.
@@ -174,7 +174,7 @@ const Index = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 section-padding bg-muted">
+      <section className=" px-4 sm:px-6 lg:px-8 section-padding bg-muted">
         <div className="container-narrow">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-12">What People Say</h2>
           <div className="grid md:grid-cols-3 gap-6">
