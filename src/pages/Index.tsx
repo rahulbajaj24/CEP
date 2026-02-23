@@ -41,35 +41,42 @@ const Index = () => {
     className="absolute inset-0 w-full h-full object-contain md:object-cover z-0" 
   />
   {}
-</div>
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/40" />
-        </div>
-        <div className="relative bg-cover bg-center bg-no-repeat container-narrow px-4 py-20">
-          <div className="max-w-2xl">
-            <span className="inline-block bg-secondary/20 text-secondary border border-secondary/30 rounded-full px-4 py-1.5 text-sm font-medium mb-6 animate-fade-in-up">
+{/* --- HERO SECTION START --- */}
+      <section className="relative w-full min-h-[80vh] md:h-screen flex items-center overflow-hidden">
+        {/* Background Image Logic */}
+        <img 
+          src="/hero-bg.png" 
+          alt="ADHAR Community" 
+          className="absolute inset-0 w-full h-full object-contain md:object-cover z-0" 
+        />
+        
+        {/* Subtle Gradient Overlay - keeps it professional but bright */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/60 via-primary/30 to-transparent z-10" />
+
+        <div className="relative z-20 w-full px-6 md:px-12 lg:px-24">
+          <div className="max-w-3xl">
+            <span className="inline-block bg-secondary text-white rounded-full px-4 py-1.5 text-sm font-bold mb-6 animate-fade-in">
               Empowering Lives Since 1991
             </span>
-            <h1 className="text-4xl md:text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground leading-tight mb-6 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-              30+ Years of Changing Lives.{" "}
+            
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 drop-shadow-md">
+              30+ Years of Changing Lives. <br />
               <span className="text-secondary">Be the reason a child smiles today.</span>
             </h1>
-            <p className="text-lg text-primary-foreground/80 mb-8 max-w-lg animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-              ADHAR is a Government-recognized trust providing shelter, education, and love to orphaned and destitute children in Pune since 1991.
+            
+            <p className="text-lg md:text-xl text-white/90 mb-8 max-w-xl drop-shadow-sm">
+              ADHAR is a Government-recognized trust providing shelter, education, and love to orphaned and destitute children in Nigdi, Pune.
             </p>
-            <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+            
+            <div className="flex flex-wrap gap-4">
               <Link to="/donate">
-                <Button size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold text-base px-8">
+                <Button size="lg" className="bg-secondary text-white hover:bg-orange-600 font-bold px-8 rounded-full shadow-lg">
                   <Heart className="w-5 h-5 mr-2" />
                   Donate Now
                 </Button>
               </Link>
-              <Link to="/contact">
-                <Button size="lg" variant="outline" className="bg-secondary text-white hover:bg-secondary/90 font-bold border-none hover:bg-primary-foreground/10 font-semibold text-base px-8">
-                  Visit Us
-                </Button>
-              </Link>
               <Link to="/volunteer">
-                <Button size="lg" variant="outline" className="bg-secondary text-white hover:bg-secondary/90 font-bold border-none hover:bg-primary-foreground/10 font-semibold text-base px-8">
+                <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm text-white border-2 border-white hover:bg-white hover:text-primary font-bold px-8 rounded-full">
                   Volunteer
                 </Button>
               </Link>
@@ -77,6 +84,7 @@ const Index = () => {
           </div>
         </div>
       </section>
+      {/* --- HERO SECTION END --- */}
 
       {/* Trust Badges */}
       <section className=" px-4 sm:px-6 lg:px-8 bg-card border-b border-border py-6">
