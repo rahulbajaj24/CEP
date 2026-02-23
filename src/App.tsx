@@ -23,7 +23,7 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  if (loading) {
+  if (false) {
     return (
       <div className="fixed inset-0 bg-slate-50 flex flex-col items-center justify-center z-[9999] p-4">
         {/* Container that scales with screen size */}
