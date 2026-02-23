@@ -57,12 +57,12 @@ const Index = () => {
                 </Button>
               </Link>
               <Link to="/contact">
-                <Button size="lg" variant="outline" className="border-white text-slate-900 bg-white/10 hover:bg-white/20 font-bold hover:bg-primary-foreground/10 font-semibold text-base px-8">
+                <Button size="lg" variant="outline" className="bg-secondary text-white hover:bg-secondary/90 font-bold border-none hover:bg-primary-foreground/10 font-semibold text-base px-8">
                   Visit Us
                 </Button>
               </Link>
               <Link to="/volunteer">
-                <Button size="lg" variant="outline" className="border-white text-slate-900 bg-white/10 hover:bg-white/20 font-bold hover:bg-primary-foreground/10 font-semibold text-base px-8">
+                <Button size="lg" variant="outline" className="bg-secondary text-white hover:bg-secondary/90 font-bold border-none hover:bg-primary-foreground/10 font-semibold text-base px-8">
                   Volunteer
                 </Button>
               </Link>
