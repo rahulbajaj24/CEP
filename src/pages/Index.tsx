@@ -34,7 +34,7 @@ const Index = () => {
       {/* Hero */}
       <section className="relative min-h-[85vh] flex items-center">
         <div className="absolute inset-0">
-          <img src="/adhar-brand-icon.jpeg" alt="ADHAR Community" className="w-full h-full object-cover" />
+          <img src="/hero-bg.png" alt="ADHAR Community" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/40" />
         </div>
         <div className="relative container-narrow px-4 py-20">
