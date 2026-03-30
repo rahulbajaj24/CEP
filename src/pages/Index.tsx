@@ -1,6 +1,5 @@
-"use client";
-
-import React from "react";
+"use client"; // MUST be the very first line
+import React from 'react';
 import { CldImage } from 'next-cloudinary';
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -40,13 +39,12 @@ const Index = () => {
     <div className="min-h-screen bg-white">
       {/* --- HERO SECTION --- */}
       <section className="relative w-full h-screen flex items-center overflow-hidden">
-  <CldImage
-  width="1920"
-  height="1080"
-  src="hero-bg.jpg_p2ales" // This is the 'Public ID' from your Cloudinary dashboard
-  alt="ADHAR Hero"
-  priority // This is the "magic" that makes it load first
-  className="w-full h-auto" // Or whatever CSS classes you were using
+<img 
+  src="https://res.cloudinary.com/ds4mv1g3e/image/upload/f_auto,q_auto/v1/hero-bg.jpg_p2ales" 
+  alt="ADHAR - Empowering Futures"
+  className="w-full h-screen object-cover" 
+  loading="eager"
+  style={{ display: 'block' }} // Ensures it's not hidden by layout
 />
   <div className="absolute inset-0 bg-black/30 z-10" />
 

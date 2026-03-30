@@ -2,7 +2,6 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
@@ -11,8 +10,11 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
   },
-  // Removed componentTagger from plugins
   plugins: [react()],
+  // ADD THIS SECTION:
+  define: {
+    'process.env': {},
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
