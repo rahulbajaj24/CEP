@@ -1,4 +1,5 @@
 import React from "react";
+import { CldImage } from 'next-cloudinary';
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { 
@@ -37,11 +38,14 @@ const Index = () => {
     <div className="min-h-screen bg-white">
       {/* --- HERO SECTION --- */}
       <section className="relative w-full h-screen flex items-center overflow-hidden">
-  <img 
-    src="/hero-bg.png" 
-    alt="ADHAR Community" 
-    className="absolute inset-0 w-full h-full object-contain md:object-cover z-0" 
-  />
+  <CldImage
+  width="1920"
+  height="1080"
+  src="hero-bg.jpg_p2ales" // This is the 'Public ID' from your Cloudinary dashboard
+  alt="ADHAR Hero"
+  priority // This is the "magic" that makes it load first
+  className="w-full h-auto" // Or whatever CSS classes you were using
+/>
   <div className="absolute inset-0 bg-black/30 z-10" />
 
   <div className="relative z-20 w-full px-6 md:px-12 lg:px-24">
