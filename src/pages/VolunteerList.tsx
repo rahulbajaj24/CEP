@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { API_BASE_URL } from "@/config/api";
 import { Users, RefreshCw, MapPin, Mail, Phone, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -21,7 +22,7 @@ const VolunteerList = () => {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch("http://localhost:3002/api/volunteer");
+      const res = await fetch(`${API_BASE_URL}/api/volunteer`);
       const data = await res.json();
       if (data.success) {
         setVolunteers(data.data);

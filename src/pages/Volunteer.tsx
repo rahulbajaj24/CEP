@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { API_BASE_URL } from "@/config/api";
 import { Heart, Mail, CheckCircle, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -46,7 +47,7 @@ const Volunteer = () => {
     setErrors((prev) => ({ ...prev, email: "", otp: "" }));
 
     try {
-      const res = await fetch("http://localhost:3002/api/volunteer/send-otp", {
+      const res = await fetch(`${API_BASE_URL}/api/volunteer/send-otp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: form.email }),
@@ -99,7 +100,7 @@ const Volunteer = () => {
 
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:3002/api/volunteer", {
+      const res = await fetch(`${API_BASE_URL}/api/volunteer`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...form, otp }),

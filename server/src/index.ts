@@ -2,17 +2,23 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import { MongoMemoryServer } from 'mongodb-memory-server';
 import volunteerRoutes from './routes/volunteer.js';
 import { initMailer } from './utils/mailer.js';
 
 const app = express();
-const PORT = 3002;
+const PORT = parseInt(process.env.PORT || '3002');
+
+// Allowed frontend origins
+const ALLOWED_ORIGINS = [
+  'http://localhost:8080',
+  'http://localhost:5173',
+  process.env.FRONTEND_URL,
+].filter(Boolean) as string[];
 
 // Middleware
 app.use(
   cors({
-    origin: 'http://localhost:8080',
+    origin: ALLOWED_ORIGINS,
     methods: ['GET', 'POST'],
   })
 );
@@ -26,19 +32,27 @@ app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Connect to in-memory MongoDB and start server
+// Connect to MongoDB and start server
 async function start() {
   try {
-    const mongod = await MongoMemoryServer.create();
-    const uri = mongod.getUri();
+    const mongoUri = process.env.MONGODB_URI;
 
-    await mongoose.connect(uri);
-    console.log('📦 Connected to in-memory MongoDB');
+    if (mongoUri) {
+      // Production: MongoDB Atlas
+      await mongoose.connect(mongoUri);
+      console.log('📦 Connected to MongoDB Atlas');
+    } else {
+      // Development: In-memory MongoDB
+      const { MongoMemoryServer } = await import('mongodb-memory-server');
+      const mongod = await MongoMemoryServer.create();
+      await mongoose.connect(mongod.getUri());
+      console.log('📦 Connected to in-memory MongoDB (dev mode)');
+    }
 
     await initMailer();
 
-    app.listen(PORT, () => {
-      console.log(`🤝 Volunteer API server running at http://localhost:${PORT}`);
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`🤝 Volunteer API server running on port ${PORT}`);
     });
   } catch (error) {
     console.error('❌ Failed to start server:', error);
