@@ -32,14 +32,6 @@ app.use(
 );
 app.use(express.json());
 
-// Routes
-app.use('/api/volunteer', volunteerRoutes);
-
-// Health check
-app.get('/api/health', (_req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
-});
-
 // MongoDB connection (reuses existing connection on Vercel warm starts)
 let isDBConnected = false;
 let isMailerReady = false;
@@ -71,9 +63,8 @@ async function ensureMailer() {
   isMailerReady = true;
 }
 
-// Initialize on every request (for Vercel serverless)
+// ⚡ Initialize DB + Mailer BEFORE routes (must be registered first!)
 app.use(async (_req, _res, next) => {
-  // Initialize mailer independently of DB — emails should work even if DB is slow
   try {
     await ensureMailer();
   } catch (error) {
@@ -87,6 +78,14 @@ app.use(async (_req, _res, next) => {
   }
 
   next();
+});
+
+// Routes (AFTER init middleware)
+app.use('/api/volunteer', volunteerRoutes);
+
+// Health check
+app.get('/api/health', (_req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
 // Local dev: start server normally
@@ -103,3 +102,4 @@ if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
 
 // Export for Vercel
 export default app;
+
