@@ -41,15 +41,19 @@ app.get('/api/health', (_req, res) => {
 });
 
 // MongoDB connection (reuses existing connection on Vercel warm starts)
-let isConnected = false;
+let isDBConnected = false;
+let isMailerReady = false;
 
 async function connectDB() {
-  if (isConnected) return;
+  if (isDBConnected) return;
 
   const mongoUri = process.env.MONGODB_URI;
 
   if (mongoUri) {
-    await mongoose.connect(mongoUri);
+    await mongoose.connect(mongoUri, {
+      serverSelectionTimeoutMS: 10000,
+      connectTimeoutMS: 10000,
+    });
     console.log('📦 Connected to MongoDB Atlas');
   } else {
     const { MongoMemoryServer } = await import('mongodb-memory-server');
@@ -58,19 +62,31 @@ async function connectDB() {
     console.log('📦 Connected to in-memory MongoDB (dev mode)');
   }
 
+  isDBConnected = true;
+}
+
+async function ensureMailer() {
+  if (isMailerReady) return;
   await initMailer();
-  isConnected = true;
+  isMailerReady = true;
 }
 
 // Initialize on every request (for Vercel serverless)
 app.use(async (_req, _res, next) => {
+  // Initialize mailer independently of DB — emails should work even if DB is slow
+  try {
+    await ensureMailer();
+  } catch (error) {
+    console.error('Mailer init error:', error);
+  }
+
   try {
     await connectDB();
-    next();
   } catch (error) {
     console.error('DB connection error:', error);
-    next(error);
   }
+
+  next();
 });
 
 // Local dev: start server normally
