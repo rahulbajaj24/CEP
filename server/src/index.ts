@@ -32,32 +32,50 @@ app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Connect to MongoDB and start server
-async function start() {
+// MongoDB connection (reuses existing connection on Vercel warm starts)
+let isConnected = false;
+
+async function connectDB() {
+  if (isConnected) return;
+
+  const mongoUri = process.env.MONGODB_URI;
+
+  if (mongoUri) {
+    await mongoose.connect(mongoUri);
+    console.log('📦 Connected to MongoDB Atlas');
+  } else {
+    const { MongoMemoryServer } = await import('mongodb-memory-server');
+    const mongod = await MongoMemoryServer.create();
+    await mongoose.connect(mongod.getUri());
+    console.log('📦 Connected to in-memory MongoDB (dev mode)');
+  }
+
+  await initMailer();
+  isConnected = true;
+}
+
+// Initialize on every request (for Vercel serverless)
+app.use(async (_req, _res, next) => {
   try {
-    const mongoUri = process.env.MONGODB_URI;
+    await connectDB();
+    next();
+  } catch (error) {
+    console.error('DB connection error:', error);
+    next(error);
+  }
+});
 
-    if (mongoUri) {
-      // Production: MongoDB Atlas
-      await mongoose.connect(mongoUri);
-      console.log('📦 Connected to MongoDB Atlas');
-    } else {
-      // Development: In-memory MongoDB
-      const { MongoMemoryServer } = await import('mongodb-memory-server');
-      const mongod = await MongoMemoryServer.create();
-      await mongoose.connect(mongod.getUri());
-      console.log('📦 Connected to in-memory MongoDB (dev mode)');
-    }
-
-    await initMailer();
-
+// Local dev: start server normally
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
+  connectDB().then(() => {
     app.listen(PORT, '0.0.0.0', () => {
       console.log(`🤝 Volunteer API server running on port ${PORT}`);
     });
-  } catch (error) {
-    console.error('❌ Failed to start server:', error);
+  }).catch(err => {
+    console.error('❌ Failed to start server:', err);
     process.exit(1);
-  }
+  });
 }
 
-start();
+// Export for Vercel
+export default app;
