@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { API_BASE_URL } from "@/config/api";
-import { Heart, Mail, CheckCircle, Loader2 } from "lucide-react";
+import { Heart, Mail, CheckCircle, Loader2, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -119,6 +119,12 @@ const Volunteer = () => {
         setEmailVerified(false);
         setErrors({});
       } else {
+        // If OTP was invalid, reset verification so they can retry
+        if (data.message?.toLowerCase().includes('otp')) {
+          setEmailVerified(false);
+          setOtpSent(true);
+          setOtp("");
+        }
         toast({ title: "Registration failed", description: data.message, variant: "destructive" });
       }
     } catch {
@@ -194,9 +200,26 @@ const Volunteer = () => {
                       {otpSent ? "Resend" : "Verify"}
                     </Button>
                   ) : (
-                    <div className="flex items-center gap-1.5 text-green-600 text-sm font-medium shrink-0 px-3">
-                      <CheckCircle className="w-4 h-4" />
-                      Verified
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <div className="flex items-center gap-1.5 text-green-600 text-sm font-medium px-2">
+                        <CheckCircle className="w-4 h-4" />
+                        Verified
+                      </div>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => {
+                          setEmailVerified(false);
+                          setOtpSent(false);
+                          setOtp("");
+                        }}
+                        className="h-8 px-2 text-xs text-muted-foreground hover:text-foreground gap-1"
+                        id="change-email-btn"
+                      >
+                        <RotateCcw className="w-3 h-3" />
+                        Change
+                      </Button>
                     </div>
                   )}
                 </div>
