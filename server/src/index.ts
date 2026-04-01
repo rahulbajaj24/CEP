@@ -18,7 +18,15 @@ const ALLOWED_ORIGINS = [
 // Middleware
 app.use(
   cors({
-    origin: ALLOWED_ORIGINS,
+    origin: (origin, callback) => {
+      // Allow requests with no origin (mobile apps, curl, etc.)
+      if (!origin) return callback(null, true);
+      // Allow exact matches from the allow-list
+      if (ALLOWED_ORIGINS.includes(origin)) return callback(null, true);
+      // Allow any Vercel preview deployment (*.vercel.app)
+      if (/\.vercel\.app$/.test(origin)) return callback(null, true);
+      callback(new Error('Not allowed by CORS'));
+    },
     methods: ['GET', 'POST'],
   })
 );
