@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import volunteerRoutes from './routes/volunteer.js';
+import contactRoutes from './routes/contact.js';
 import { initMailer } from './utils/mailer.js';
 
 const app = express();
@@ -82,6 +83,7 @@ app.use(async (_req, _res, next) => {
 
 // Routes (AFTER init middleware)
 app.use('/api/volunteer', volunteerRoutes);
+app.use('/api/contact', contactRoutes);
 
 // Health check
 app.get('/api/health', (_req, res) => {

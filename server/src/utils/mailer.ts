@@ -41,6 +41,13 @@ interface VolunteerData {
   location: string;
 }
 
+interface ContactData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
 // ─── Send Email (shared helper) ───
 async function sendEmail(to: string, subject: string, html: string): Promise<string | null> {
   if (!transporter) {
@@ -87,6 +94,24 @@ export async function sendVolunteerSMS(phone: string, name: string) {
   console.log(`   To: ${phone}`);
   console.log(`   Message: Hi ${name}, your ADHAR volunteer registration is complete! 🎉`);
   return null;
+}
+
+// ─── Contact Email Functions ───
+
+export async function sendContactNotification(contact: ContactData) {
+  return sendEmail(
+    SENDER_EMAIL, // Send to ADHAR admin
+    `📩 New Contact Message from ${contact.name}${contact.subject ? ` — ${contact.subject}` : ''}`,
+    buildContactNotificationHTML(contact)
+  );
+}
+
+export async function sendContactAutoReply(name: string, email: string) {
+  return sendEmail(
+    email,
+    '✅ We received your message — ADHAR',
+    buildContactAutoReplyHTML(name)
+  );
 }
 
 // ─── HTML Templates ───
@@ -191,6 +216,75 @@ function buildOTPHTML(otp: string): string {
         <p style="color: #94a3b8; font-size: 12px; margin: 0;">
           ADHAR Adaption Center • Nigdi, Pune
         </p>
+      </div>
+    </div>
+  `;
+}
+
+function buildContactNotificationHTML(c: ContactData): string {
+  return `
+    <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f8fafc; border-radius: 12px; overflow: hidden;">
+      <div style="background: linear-gradient(135deg, #1e3a5f, #2d5a8e); padding: 32px; text-align: center;">
+        <h1 style="color: #ffffff; margin: 0; font-size: 28px;">ADHAR</h1>
+        <p style="color: #cbd5e1; margin: 8px 0 0; font-size: 14px;">New Contact Message</p>
+      </div>
+      <div style="padding: 32px;">
+        <h2 style="color: #1e3a5f; margin: 0 0 16px; font-size: 20px;">📩 New message received</h2>
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px; margin: 0 0 20px;">
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td style="padding: 8px 0; color: #94a3b8; font-size: 14px; width: 80px;">From</td>
+              <td style="padding: 8px 0; color: #1e293b; font-size: 14px; font-weight: 600;">${c.name}</td>
+            </tr>
+            <tr style="border-top: 1px solid #f1f5f9;">
+              <td style="padding: 8px 0; color: #94a3b8; font-size: 14px;">Email</td>
+              <td style="padding: 8px 0; color: #1e293b; font-size: 14px;"><a href="mailto:${c.email}" style="color: #2d5a8e;">${c.email}</a></td>
+            </tr>
+            ${c.subject ? `<tr style="border-top: 1px solid #f1f5f9;"><td style="padding: 8px 0; color: #94a3b8; font-size: 14px;">Subject</td><td style="padding: 8px 0; color: #1e293b; font-size: 14px; font-weight: 600;">${c.subject}</td></tr>` : ''}
+          </table>
+        </div>
+        <div style="background: #f0f9ff; border-left: 4px solid #2d5a8e; border-radius: 0 8px 8px 0; padding: 16px 20px;">
+          <p style="color: #1e3a5f; font-size: 13px; font-weight: 600; margin: 0 0 8px;">Message:</p>
+          <p style="color: #334155; font-size: 14px; line-height: 1.7; margin: 0; white-space: pre-wrap;">${c.message}</p>
+        </div>
+        <p style="color: #64748b; font-size: 13px; margin: 20px 0 0;">Reply directly to <a href="mailto:${c.email}" style="color: #2d5a8e;">${c.email}</a></p>
+      </div>
+      <div style="background: #1e3a5f; padding: 16px; text-align: center;">
+        <p style="color: #94a3b8; font-size: 12px; margin: 0;">ADHAR Adaption Center • Nigdi, Pune</p>
+      </div>
+    </div>
+  `;
+}
+
+function buildContactAutoReplyHTML(name: string): string {
+  return `
+    <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f8fafc; border-radius: 12px; overflow: hidden;">
+      <div style="background: linear-gradient(135deg, #1e3a5f, #2d5a8e); padding: 32px; text-align: center;">
+        <h1 style="color: #ffffff; margin: 0; font-size: 28px;">ADHAR</h1>
+        <p style="color: #cbd5e1; margin: 8px 0 0; font-size: 14px;">Adaption Center</p>
+      </div>
+      <div style="padding: 32px;">
+        <h2 style="color: #1e3a5f; margin: 0 0 12px; font-size: 22px;">Hi ${name} 👋</h2>
+        <p style="color: #475569; line-height: 1.7; font-size: 15px; margin: 0 0 16px;">
+          Thank you for reaching out to <strong>ADHAR</strong>! We have received your message and our team will get back to you within <strong>24 hours</strong>.
+        </p>
+        <p style="color: #475569; line-height: 1.7; font-size: 15px; margin: 0 0 24px;">
+          In the meantime, feel free to visit our center or call us at <strong>020-27656257</strong>.
+        </p>
+        <div style="background: #f0f9ff; border-left: 4px solid #2d5a8e; border-radius: 0 8px 8px 0; padding: 16px 20px;">
+          <p style="color: #1e3a5f; font-size: 14px; font-weight: 600; margin: 0 0 8px;">📍 Our Address</p>
+          <p style="color: #64748b; font-size: 13px; line-height: 1.7; margin: 0;">
+            "Madhav Smruti"<br>
+            Plot No. 48 &amp; 49, Sector 27,<br>
+            Janata Vasahat, Pradhikaran,<br>
+            Near Akurdi Railway Station,<br>
+            Pune – 411044
+          </p>
+        </div>
+        <p style="color: #475569; font-size: 15px; margin: 24px 0 0;">Warm regards,<br><strong>Team ADHAR</strong> 💙</p>
+      </div>
+      <div style="background: #1e3a5f; padding: 16px; text-align: center;">
+        <p style="color: #94a3b8; font-size: 12px; margin: 0;">ADHAR Adaption Center • Nigdi, Pune • Since 1991</p>
       </div>
     </div>
   `;
