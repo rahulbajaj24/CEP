@@ -34,3 +34,23 @@ export function verifyOTP(email: string, otp: string): { valid: boolean; message
   otpStore.delete(email.toLowerCase());
   return { valid: true, message: 'Email verified successfully!' };
 }
+
+// Check OTP without consuming it (for pre-submit verification)
+export function checkOTP(email: string, otp: string): { valid: boolean; message: string } {
+  const entry = otpStore.get(email.toLowerCase());
+
+  if (!entry) {
+    return { valid: false, message: 'No OTP found for this email. Please request a new one.' };
+  }
+
+  if (Date.now() > entry.expiresAt) {
+    otpStore.delete(email.toLowerCase());
+    return { valid: false, message: 'OTP has expired. Please request a new one.' };
+  }
+
+  if (entry.otp !== otp) {
+    return { valid: false, message: 'Invalid OTP. Please check and try again.' };
+  }
+
+  return { valid: true, message: 'OTP is valid.' };
+}

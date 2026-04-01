@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
 import Volunteer from '../models/Volunteer.js';
 import { sendVolunteerConfirmation, sendVolunteerNotificationToAdmin, sendOTPEmail, sendVolunteerSMS } from '../utils/mailer.js';
-import { generateOTP, storeOTP, verifyOTP } from '../utils/otp.js';
+import { generateOTP, storeOTP, verifyOTP, checkOTP } from '../utils/otp.js';
 
 const router = Router();
 
@@ -30,6 +30,24 @@ router.post('/send-otp', async (req: Request, res: Response) => {
   } catch (error) {
     console.error('Error sending OTP:', error);
     res.status(500).json({ success: false, message: 'Failed to send OTP.' });
+  }
+});
+
+// POST /api/volunteer/verify-otp — Verify OTP without consuming it
+router.post('/verify-otp', (req: Request, res: Response) => {
+  const { email, otp } = req.body;
+
+  if (!email || !otp) {
+    res.status(400).json({ success: false, message: 'Email and OTP are required.' });
+    return;
+  }
+
+  const result = checkOTP(email, otp);
+
+  if (result.valid) {
+    res.json({ success: true, message: result.message });
+  } else {
+    res.status(400).json({ success: false, message: result.message });
   }
 });
 
