@@ -71,16 +71,40 @@ const Volunteer = () => {
     }
   };
 
-  const handleVerifyOTP = () => {
-    if (otp.length === 6) {
-      setEmailVerified(true);
-      setErrors((prev) => ({ ...prev, email: "" }));
-      toast({
-        title: "Email Verified ✅",
-        description: "Your email has been verified. You can now submit the form.",
-      });
-    } else {
+  const handleVerifyOTP = async () => {
+    if (otp.length !== 6) {
       setErrors((prev) => ({ ...prev, otp: "Please enter a valid 6-digit OTP" }));
+      return;
+    }
+
+    setOtpLoading(true);
+    setErrors((prev) => ({ ...prev, otp: "" }));
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/volunteer/verify-otp`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: form.email, otp }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setEmailVerified(true);
+        setErrors((prev) => ({ ...prev, email: "" }));
+        toast({
+          title: "Email Verified ✅",
+          description: "Your email has been verified. You can now submit the form.",
+        });
+      } else {
+        setOtp("");
+        setErrors((prev) => ({ ...prev, otp: data.message || "Invalid OTP" }));
+        toast({ title: "Verification Failed", description: data.message, variant: "destructive" });
+      }
+    } catch {
+      toast({ title: "Error", description: "Could not verify OTP. Please try again.", variant: "destructive" });
+    } finally {
+      setOtpLoading(false);
     }
   };
 
@@ -246,11 +270,14 @@ const Volunteer = () => {
                     <Button
                       type="button"
                       onClick={handleVerifyOTP}
-                      disabled={otp.length !== 6}
+                      disabled={otp.length !== 6 || otpLoading}
                       className="shrink-0 bg-blue-600 hover:bg-blue-700"
                       id="verify-otp-btn"
                     >
-                      Verify Code
+                      {otpLoading ? (
+                        <Loader2 className="w-4 h-4 animate-spin mr-1" />
+                      ) : null}
+                      {otpLoading ? "Verifying..." : "Verify Code"}
                     </Button>
                   </div>
                   {errors.otp && <p className="text-destructive text-xs">{errors.otp}</p>}
