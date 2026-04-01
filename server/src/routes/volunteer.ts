@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 import Volunteer from '../models/Volunteer.js';
-import { sendVolunteerConfirmation, sendOTPEmail, sendVolunteerSMS } from '../utils/mailer.js';
+import { sendVolunteerConfirmation, sendVolunteerNotificationToAdmin, sendOTPEmail, sendVolunteerSMS } from '../utils/mailer.js';
 import { generateOTP, storeOTP, verifyOTP } from '../utils/otp.js';
 
 const router = Router();
@@ -77,7 +77,21 @@ router.post('/', async (req: Request, res: Response) => {
         location: saved.location,
       });
     } catch (emailErr) {
-      console.error('⚠️ Email send failed (registration still saved):', emailErr);
+      console.error('⚠️ Confirmation email failed (registration still saved):', emailErr);
+    }
+
+    // Send notification email to ADHAR admin
+    try {
+      await sendVolunteerNotificationToAdmin({
+        name: saved.name,
+        email: saved.email,
+        phone: saved.phone,
+        interest: saved.interest,
+        location: saved.location,
+      });
+      console.log(`📧 Admin notification sent for volunteer: ${saved.name}`);
+    } catch (adminErr) {
+      console.error('⚠️ Admin notification email failed (registration still saved):', adminErr);
     }
 
     // Send SMS notification

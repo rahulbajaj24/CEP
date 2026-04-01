@@ -87,6 +87,15 @@ export async function sendOTPEmail(email: string, otp: string) {
   return sendEmail(email, '🔐 Your ADHAR Verification Code', buildOTPHTML(otp));
 }
 
+// ─── Send Notification to ADHAR Admin when a Volunteer Registers ───
+export async function sendVolunteerNotificationToAdmin(volunteer: VolunteerData) {
+  return sendEmail(
+    SENDER_EMAIL, // Send to ADHAR admin
+    `🆕 New Volunteer Registration — ${volunteer.name}`,
+    buildVolunteerAdminNotificationHTML(volunteer)
+  );
+}
+
 // ─── Send SMS (placeholder — logs to console) ───
 export async function sendVolunteerSMS(phone: string, name: string) {
   // SMS requires a paid service like Twilio. For now, log the message.
@@ -289,3 +298,73 @@ function buildContactAutoReplyHTML(name: string): string {
     </div>
   `;
 }
+
+function buildVolunteerAdminNotificationHTML(v: VolunteerData): string {
+  const registeredAt = new Date().toLocaleString('en-IN', {
+    dateStyle: 'full',
+    timeStyle: 'short',
+    timeZone: 'Asia/Kolkata',
+  });
+
+  return `
+    <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f8fafc; border-radius: 12px; overflow: hidden;">
+      <div style="background: linear-gradient(135deg, #065f46, #059669); padding: 32px; text-align: center;">
+        <h1 style="color: #ffffff; margin: 0; font-size: 28px;">ADHAR</h1>
+        <p style="color: #a7f3d0; margin: 8px 0 0; font-size: 14px; letter-spacing: 1px;">New Volunteer Registration</p>
+      </div>
+
+      <div style="padding: 32px;">
+        <div style="background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 10px; padding: 16px 20px; margin: 0 0 24px; text-align: center;">
+          <p style="color: #065f46; font-size: 16px; font-weight: 700; margin: 0;">
+            🎉 A new volunteer has registered!
+          </p>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px; margin: 0 0 24px;">
+          <h3 style="color: #334155; margin: 0 0 14px; font-size: 15px;">📋 Volunteer Details</h3>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td style="padding: 10px 0; color: #94a3b8; font-size: 14px; width: 110px; vertical-align: top;">Name</td>
+              <td style="padding: 10px 0; color: #1e293b; font-size: 14px; font-weight: 600;">${v.name}</td>
+            </tr>
+            <tr style="border-top: 1px solid #f1f5f9;">
+              <td style="padding: 10px 0; color: #94a3b8; font-size: 14px;">Email</td>
+              <td style="padding: 10px 0; color: #1e293b; font-size: 14px;">
+                <a href="mailto:${v.email}" style="color: #2d5a8e; text-decoration: none;">${v.email}</a>
+              </td>
+            </tr>
+            <tr style="border-top: 1px solid #f1f5f9;">
+              <td style="padding: 10px 0; color: #94a3b8; font-size: 14px;">Phone</td>
+              <td style="padding: 10px 0; color: #1e293b; font-size: 14px;">
+                <a href="tel:${v.phone}" style="color: #2d5a8e; text-decoration: none;">${v.phone}</a>
+              </td>
+            </tr>
+            <tr style="border-top: 1px solid #f1f5f9;">
+              <td style="padding: 10px 0; color: #94a3b8; font-size: 14px;">Interest</td>
+              <td style="padding: 10px 0; color: #1e293b; font-size: 14px; font-weight: 600;">
+                <span style="background: #dbeafe; color: #1e40af; padding: 3px 10px; border-radius: 12px; font-size: 13px;">${v.interest}</span>
+              </td>
+            </tr>
+            <tr style="border-top: 1px solid #f1f5f9;">
+              <td style="padding: 10px 0; color: #94a3b8; font-size: 14px;">Location</td>
+              <td style="padding: 10px 0; color: #1e293b; font-size: 14px;">${v.location}</td>
+            </tr>
+            <tr style="border-top: 1px solid #f1f5f9;">
+              <td style="padding: 10px 0; color: #94a3b8; font-size: 14px;">Registered</td>
+              <td style="padding: 10px 0; color: #1e293b; font-size: 14px;">${registeredAt}</td>
+            </tr>
+          </table>
+        </div>
+
+        <p style="color: #64748b; font-size: 13px; margin: 0;">
+          You can reply directly to the volunteer at <a href="mailto:${v.email}" style="color: #2d5a8e;">${v.email}</a> or call them at <a href="tel:${v.phone}" style="color: #2d5a8e;">${v.phone}</a>.
+        </p>
+      </div>
+
+      <div style="background: #065f46; padding: 16px; text-align: center;">
+        <p style="color: #a7f3d0; font-size: 12px; margin: 0;">ADHAR Adaption Center • Nigdi, Pune • Since 1991</p>
+      </div>
+    </div>
+  `;
+}
+
