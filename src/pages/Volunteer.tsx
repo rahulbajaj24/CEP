@@ -37,7 +37,6 @@ const Volunteer = () => {
     return Object.keys(errs).length === 0;
   };
 
-<<<<<<< HEAD
   const handleSendOTP = async () => {
     if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
       setErrors((prev) => ({ ...prev, email: "Please enter a valid email first" }));
@@ -111,7 +110,6 @@ const Volunteer = () => {
 
   const handleEmailChange = (email: string) => {
     setForm({ ...form, email });
-    // Reset verification if email changes
     if (otpSent || emailVerified) {
       setOtpSent(false);
       setEmailVerified(false);
@@ -119,13 +117,10 @@ const Volunteer = () => {
     }
   };
 
-=======
->>>>>>> 4655e60 (volunteer and contact backend done)
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
-<<<<<<< HEAD
     setLoading(true);
     try {
       const res = await fetch(`${API_BASE_URL}/api/volunteer`, {
@@ -147,7 +142,6 @@ const Volunteer = () => {
         setEmailVerified(false);
         setErrors({});
       } else {
-        // If OTP was invalid, reset verification so they can retry
         if (data.message?.toLowerCase().includes('otp')) {
           setEmailVerified(false);
           setOtpSent(true);
@@ -159,34 +153,6 @@ const Volunteer = () => {
       toast({ title: "Error", description: "Could not connect to server.", variant: "destructive" });
     } finally {
       setLoading(false);
-=======
-    try {
-      // THE NEW CONNECTION LINE:
-      const response = await fetch("https://cep-zfb2-kkcvp11fj-rahulbajaj24s-projects.vercel.app/api/volunteer", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-
-      if (response.ok) {
-        toast({
-          title: "Registration Successful!",
-          description: "Thank you for joining ADHAR. Check your email for confirmation!",
-        });
-        setForm({ name: "", email: "", phone: "", message: "" });
-        setErrors({});
-      } else {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Submission failed");
-      }
-    } catch (error) {
-      console.error("Backend Error:", error);
-      toast({
-        variant: "destructive",
-        title: "Submission Error",
-        description: "Could not connect to the server. Please try again later.",
-      });
->>>>>>> 4655e60 (volunteer and contact backend done)
     }
   };
 
@@ -225,7 +191,6 @@ const Volunteer = () => {
                 {errors.name && <p className="text-destructive text-xs mt-1">{errors.name}</p>}
               </div>
 
-              {/* Email with OTP verification */}
               <div>
                 <Label htmlFor="email">Email</Label>
                 <div className="flex gap-2">
@@ -282,7 +247,6 @@ const Volunteer = () => {
                 {errors.email && <p className="text-destructive text-xs mt-1">{errors.email}</p>}
               </div>
 
-              {/* OTP input — shown after sending OTP */}
               {otpSent && !emailVerified && (
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-3 animate-in fade-in slide-in-from-top-2">
                   <p className="text-sm text-blue-700 font-medium">
@@ -306,9 +270,7 @@ const Volunteer = () => {
                       className="shrink-0 bg-blue-600 hover:bg-blue-700"
                       id="verify-otp-btn"
                     >
-                      {otpLoading ? (
-                        <Loader2 className="w-4 h-4 animate-spin mr-1" />
-                      ) : null}
+                      {otpLoading && <Loader2 className="w-4 h-4 animate-spin mr-1" />}
                       {otpLoading ? "Verifying..." : "Verify Code"}
                     </Button>
                   </div>
@@ -328,6 +290,7 @@ const Volunteer = () => {
                 />
                 {errors.phone && <p className="text-destructive text-xs mt-1">{errors.phone}</p>}
               </div>
+
               <div>
                 <Label htmlFor="interest">Area of Interest</Label>
                 <select
@@ -345,6 +308,7 @@ const Volunteer = () => {
                 </select>
                 {errors.interest && <p className="text-destructive text-xs mt-1">{errors.interest}</p>}
               </div>
+
               <div>
                 <Label htmlFor="location">Location</Label>
                 <Input
@@ -354,6 +318,7 @@ const Volunteer = () => {
                   placeholder="Nigdi"
                 />
               </div>
+
               <Button
                 type="submit"
                 size="lg"
